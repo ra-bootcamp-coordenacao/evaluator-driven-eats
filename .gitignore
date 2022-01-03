@@ -1,0 +1,9 @@
+node_modules
+.testedProject
+.tmp
+cypress/downloads
+cypress/reports
+cypress/screenshots
+cypress/videos
+cypress/integration
+.projects
