@@ -15,31 +15,29 @@ describe('Layout: Itens e Botão habilitados', () => {
       .first()
       .as('dish');
     cy.analyseElement('@dish').as('beforeColors');
-
-    cy.wait(0).then(function () {
-      cy.log(this.beforeColors);
-    });
+    cy.wait(0);
 
     cy.get('@dish').click();
     cy.analyseElement('@dish').as('afterColors');
-
     cy.wait(0).then(function () {
-      cy.log(this.afterColors);
       expect(
         findSimilarity(
           this.beforeColors.asHexMatrix.flat(),
           this.afterColors.asHexMatrix.flat()
         )
       ).to.equal(0);
+
+      expect(findInMatrix(this.afterColors.asHexMatrix, '#32b72f')).to.equal(
+        '#32b72f'
+      );
     });
   });
 
   it('Mudança de texto e cor no botão flutuante', () => {
-    cy.contains('Selecione os 3 itens para fechar o pedido').as('before');
-    cy.get('@before').should('be.visible');
+    cy.contains('Selecione os 3 itens para fechar o pedido').as('button');
+    cy.get('@button').should('be.visible');
     cy.shouldNotExistOrShouldNotBeVisible({ text: 'Fechar pedido' });
-    cy.analyseElement('@before', 162, 0, 10, 10).as('beforeColors');
-
+    cy.analyseElement('@button').as('buttonBefore');
     cy.wait(0);
 
     cy.xpath(
@@ -60,14 +58,13 @@ describe('Layout: Itens e Botão habilitados', () => {
     cy.shouldNotExistOrShouldNotBeVisible({
       text: 'Selecione os 3 itens para fechar o pedido',
     });
-    cy.contains('Fechar pedido').as('after');
-    cy.get('@after').should('be.visible');
-    cy.analyseElement('@after', 162, 0, 10, 10).as('afterColors');
+    cy.get('@button').should('be.visible');
+    cy.analyseElement('@button').as('buttonAfter');
     cy.wait(0).then(function () {
       expect(
         findSimilarity(
-          this.beforeColors.asHexMatrix.flat(),
-          this.afterColors.asHexMatrix.flat()
+          this.buttonBefore.asHexMatrix.flat(),
+          this.buttonAfter.asHexMatrix.flat()
         )
       ).to.equal(0);
     });
@@ -86,14 +83,7 @@ describe('Lógica: Seleção do combo', () => {
 
     cy.get('@firstDish').click();
     cy.analyseElement('@firstDish').as('firstAfterClick');
-    cy.wait(0).then(function () {
-      expect(
-        findSimilarity(
-          this.firstBeforeClick.asHexMatrix.flat(),
-          this.firstAfterClick.asHexMatrix.flat()
-        )
-      ).to.equal(0);
-    });
+    cy.wait(0);
 
     cy.xpath(
       "//*[@data-identifier='dishes']//*[@data-identifier='food-option']"
@@ -105,26 +95,30 @@ describe('Lógica: Seleção do combo', () => {
 
     cy.get('@secondDish').click();
     cy.analyseElement('@secondDish').as('secondAfterClick');
+    cy.wait(0);
+
+    cy.analyseElement('@firstDish').as('firstAfterChange');
     cy.wait(0).then(function () {
+      expect(
+        findSimilarity(
+          this.firstBeforeClick.asHexMatrix.flat(),
+          this.firstAfterClick.asHexMatrix.flat()
+        )
+      ).to.equal(0);
+
       expect(
         findSimilarity(
           this.secondBeforeClick.asHexMatrix.flat(),
           this.secondAfterClick.asHexMatrix.flat()
         )
       ).to.equal(0);
-    });
 
-    cy.analyseElement('@firstDish').as('firstAfterChange');
-    cy.wait(0).then(function () {
       expect(
         findSimilarity(
           this.firstAfterChange.asHexMatrix.flat(),
           this.firstAfterClick.asHexMatrix.flat()
         )
       ).to.equal(0);
-      expect(
-        findInMatrix(this.secondAfterClick.asHexMatrix, '#32b72f')
-      ).to.equal('#32b72f');
     });
   });
 });
