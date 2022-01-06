@@ -5,5 +5,4 @@ cypress/downloads
 cypress/reports
 cypress/screenshots
 cypress/videos
-cypress/integration
 .projects
