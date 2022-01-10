@@ -40,25 +40,11 @@ describe('Layout: Itens e Botão habilitados', () => {
     cy.analyseElement('@button').as('buttonBefore');
     cy.wait(0);
 
-    cy.xpath(
-      "//*[@data-identifier='dishes']//*[@data-identifier='food-option']"
-    )
-      .first()
-      .click();
-    cy.xpath(
-      "//*[@data-identifier='drinks']//*[@data-identifier='food-option']"
-    )
-      .first()
-      .click();
-    cy.xpath(
-      "//*[@data-identifier='desserts']//*[@data-identifier='food-option']"
-    )
-      .first()
-      .click();
+    cy.selectOptions();
     cy.shouldNotExistOrShouldNotBeVisible({
       text: 'Selecione os 3 itens para fechar o pedido',
     });
-    cy.get('@button').should('be.visible');
+    cy.contains('Fechar pedido').should('be.visible');
     cy.analyseElement('@button').as('buttonAfter');
     cy.wait(0).then(function () {
       expect(
