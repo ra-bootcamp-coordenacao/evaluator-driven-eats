@@ -4,15 +4,19 @@
   "description": "Driven Projects Evaluator CLI",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "rm -rf cypress/reports && cypress run --headless && mochawesome-merge cypress/reports/*.json > output.json"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "cypress": "^9.2.0",
+    "cypress-multi-reporters": "^1.5.0",
     "cypress-wait-until": "^1.7.2",
     "cypress-xpath": "^1.6.2",
-    "express": "^4.17.2"
+    "express": "^4.17.2",
+    "mochawesome": "^7.0.1",
+    "mochawesome-merge": "^4.2.1",
+    "mochawesome-report-generator": "^6.0.1"
   }
 }

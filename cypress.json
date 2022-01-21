@@ -1,1 +1,8 @@
-{ "env": { "url": "https://f0szq.csb.app/" }, "chromeWebSecurity": false }
+{
+  "env": { "url": "http://evaluator-tool---static-server.evaluator-network:8000" },
+  "chromeWebSecurity": false,
+  "reporter": "cypress-multi-reporters",
+  "reporterOptions": {
+    "configFile": "reporter.json"
+  }
+}

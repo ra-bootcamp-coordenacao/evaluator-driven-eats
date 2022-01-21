@@ -1,0 +1,339 @@
+{
+  "stats": {
+    "suites": 3,
+    "tests": 7,
+    "passes": 7,
+    "pending": 0,
+    "failures": 0,
+    "start": "2022-01-21T20:36:05.265Z",
+    "end": "2022-01-21T20:36:58.724Z",
+    "duration": 39745,
+    "testsRegistered": 7,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "8e800b54-c934-461a-87fd-6b719a07915a",
+      "title": "",
+      "fullFile": "cypress/integration/messageLogic.spec.js",
+      "file": "cypress/integration/messageLogic.spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "39fc874b-b726-4841-92b7-8ef91a165749",
+          "title": "Lógica: Envio por WhatsApp",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "O pedido é encaminhado por WhatsApp após clicar em enviar o pedido",
+              "fullTitle": "Lógica: Envio por WhatsApp O pedido é encaminhado por WhatsApp após clicar em enviar o pedido",
+              "timedOut": null,
+              "duration": 3359,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.selectOptions();\ncy.orderConfirm();\ncy.url().should('contain', 'https://api.whatsapp.com/send/?phone');",
+              "err": {},
+              "uuid": "a8d162e7-b5b8-4b75-be8e-95b024084a1b",
+              "parentUUID": "39fc874b-b726-4841-92b7-8ef91a165749",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "a8d162e7-b5b8-4b75-be8e-95b024084a1b"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 3359,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        },
+        {
+          "uuid": "8d3fda11-1087-429d-b1b9-6505f619387b",
+          "title": "Lógica: Conteúdo da mensagem de acordo com o combo",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "A mensagem deve estar com pratos e preço de acordo com o que o usuário escolheu",
+              "fullTitle": "Lógica: Conteúdo da mensagem de acordo com o combo A mensagem deve estar com pratos e preço de acordo com o que o usuário escolheu",
+              "timedOut": null,
+              "duration": 3042,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.selectOptions().then(data => {\n  cy.orderConfirm().then(() => {\n    cy.window().then(win => {\n      expect((0, _messageMatch.default)(win.location.href, data)).to.equal(1);\n    });\n  });\n});",
+              "err": {},
+              "uuid": "ae4e3da3-2dcc-4caf-8a2c-665ab7cbe619",
+              "parentUUID": "8d3fda11-1087-429d-b1b9-6505f619387b",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Formatação de mensagem de acordo com o formato proposto",
+              "fullTitle": "Lógica: Conteúdo da mensagem de acordo com o combo Formatação de mensagem de acordo com o formato proposto",
+              "timedOut": null,
+              "duration": 1738,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.selectOptions().then(data => {\n  cy.orderConfirm().then(() => {\n    cy.window().then(win => {\n      expect((0, _messageMatch.default)(win.location.href, data, 'format')).to.equal(2);\n    });\n  });\n});",
+              "err": {},
+              "uuid": "91b87ab1-c8fa-46f5-ab8a-c77cdb4e6013",
+              "parentUUID": "8d3fda11-1087-429d-b1b9-6505f619387b",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "ae4e3da3-2dcc-4caf-8a2c-665ab7cbe619",
+            "91b87ab1-c8fa-46f5-ab8a-c77cdb4e6013"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 4780,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    },
+    {
+      "uuid": "a511385f-6430-4713-a809-a3bfdd6bfc81",
+      "title": "",
+      "fullFile": "cypress/integration/selectionLogic.spec.js",
+      "file": "cypress/integration/selectionLogic.spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "4f7b9a04-ece9-4a34-b8a8-91f92051cc58",
+          "title": "Layout: Itens e Botão habilitados",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Check e borda nos itens ao selecioná-los",
+              "fullTitle": "Layout: Itens e Botão habilitados Check e borda nos itens ao selecioná-los",
+              "timedOut": null,
+              "duration": 4875,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.xpath(\"//*[@data-identifier='dishes']//*[@data-identifier='food-option']\").first().as('dish');\ncy.analyseElement('@dish').as('beforeColors');\ncy.wait(0);\ncy.get('@dish').click();\ncy.analyseElement('@dish').as('afterColors');\ncy.wait(0).then(function () {\n  expect((0, _findSimilarity.default)(this.beforeColors.asHexMatrix.flat(), this.afterColors.asHexMatrix.flat())).to.equal(0);\n  expect((0, _findInMatrix.default)(this.afterColors.asHexMatrix, '#32b72f')).to.equal('#32b72f');\n});",
+              "err": {},
+              "uuid": "17d4cd23-2ab0-4102-9281-74d1987a97a1",
+              "parentUUID": "4f7b9a04-ece9-4a34-b8a8-91f92051cc58",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Mudança de texto e cor no botão flutuante",
+              "fullTitle": "Layout: Itens e Botão habilitados Mudança de texto e cor no botão flutuante",
+              "timedOut": null,
+              "duration": 6053,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.contains('Selecione os 3 itens para fechar o pedido').as('button');\ncy.get('@button').should('be.visible');\ncy.shouldNotExistOrShouldNotBeVisible({\n  text: 'Fechar pedido'\n});\ncy.analyseElement('@button').as('buttonBefore');\ncy.wait(0);\ncy.selectOptions();\ncy.shouldNotExistOrShouldNotBeVisible({\n  text: 'Selecione os 3 itens para fechar o pedido'\n});\ncy.contains('Fechar pedido').should('be.visible');\ncy.analyseElement('@button').as('buttonAfter');\ncy.wait(0).then(function () {\n  expect((0, _findSimilarity.default)(this.buttonBefore.asHexMatrix.flat(), this.buttonAfter.asHexMatrix.flat())).to.equal(0);\n});",
+              "err": {},
+              "uuid": "8d5a5bff-19a4-4b77-9569-8496144cb48a",
+              "parentUUID": "4f7b9a04-ece9-4a34-b8a8-91f92051cc58",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "17d4cd23-2ab0-4102-9281-74d1987a97a1",
+            "8d5a5bff-19a4-4b77-9569-8496144cb48a"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 10928,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        },
+        {
+          "uuid": "0773ba77-066a-49d7-aa0b-4f069eef2983",
+          "title": "Lógica: Seleção do combo",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Desmarcando ao selecionar outro item",
+              "fullTitle": "Lógica: Seleção do combo Desmarcando ao selecionar outro item",
+              "timedOut": null,
+              "duration": 11538,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.xpath(\"//*[@data-identifier='dishes']//*[@data-identifier='food-option']\").first().as('firstDish');\ncy.analyseElement('@firstDish').as('firstBeforeClick');\ncy.wait(0);\ncy.get('@firstDish').click();\ncy.analyseElement('@firstDish').as('firstAfterClick');\ncy.wait(0);\ncy.xpath(\"//*[@data-identifier='dishes']//*[@data-identifier='food-option']\").eq(1).as('secondDish');\ncy.analyseElement('@secondDish').as('secondBeforeClick');\ncy.wait(0);\ncy.get('@secondDish').click();\ncy.analyseElement('@secondDish').as('secondAfterClick');\ncy.wait(0);\ncy.analyseElement('@firstDish').as('firstAfterChange');\ncy.wait(0).then(function () {\n  expect((0, _findSimilarity.default)(this.firstBeforeClick.asHexMatrix.flat(), this.firstAfterClick.asHexMatrix.flat())).to.equal(0);\n  expect((0, _findSimilarity.default)(this.secondBeforeClick.asHexMatrix.flat(), this.secondAfterClick.asHexMatrix.flat())).to.equal(0);\n  expect((0, _findSimilarity.default)(this.firstAfterChange.asHexMatrix.flat(), this.firstAfterClick.asHexMatrix.flat())).to.equal(0);\n});",
+              "err": {},
+              "uuid": "53fccd54-a8f0-457b-a5d4-83cfea7f3054",
+              "parentUUID": "0773ba77-066a-49d7-aa0b-4f069eef2983",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "53fccd54-a8f0-457b-a5d4-83cfea7f3054"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 11538,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    },
+    {
+      "uuid": "aec1f144-6e9a-474b-9c35-5415da606dea",
+      "title": "",
+      "fullFile": "cypress/integration/buttonLogic.spec.js",
+      "file": "cypress/integration/buttonLogic.spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "801d0dbc-860f-45fb-a8c3-859dc6b73a4f",
+          "title": "Lógica: Habilitar botão de enviar pedido",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Botão de enviar pedido fica desabilitado até selecionar todos os pedidos",
+              "fullTitle": "Lógica: Habilitar botão de enviar pedido Botão de enviar pedido fica desabilitado até selecionar todos os pedidos",
+              "timedOut": null,
+              "duration": 9140,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.contains('Selecione os 3 itens para fechar o pedido').as('button');\ncy.analyseElement('@button').as('buttonBeforeAll');\ncy.wait(0);\ncy.get('@button').should('be.disabled');\ncy.xpath(\"//*[@data-identifier='dishes']//*[@data-identifier='food-option']\").first().click();\ncy.analyseElement('@button').as('buttonAfterOne');\ncy.wait(0);\ncy.get('@button').should('be.disabled');\ncy.xpath(\"//*[@data-identifier='drinks']//*[@data-identifier='food-option']\").first().click();\ncy.analyseElement('@button').as('buttonAfterTwo');\ncy.wait(0);\ncy.get('@button').should('be.disabled');\ncy.xpath(\"//*[@data-identifier='desserts']//*[@data-identifier='food-option']\").first().click();\ncy.analyseElement('@button').as('buttonAfterThree');\ncy.wait(0).then(function () {\n  cy.get('@button').should('not.be.disabled');\n  expect((0, _findSimilarity.default)(this.buttonBeforeAll.asHexMatrix.flat(), this.buttonAfterOne.asHexMatrix.flat())).to.equal(1);\n  expect((0, _findSimilarity.default)(this.buttonAfterOne.asHexMatrix.flat(), this.buttonAfterTwo.asHexMatrix.flat())).to.equal(1);\n  expect((0, _findSimilarity.default)(this.buttonAfterTwo.asHexMatrix.flat(), this.buttonAfterThree.asHexMatrix.flat())).to.equal(0);\n  expect((0, _findInMatrix.default)(this.buttonAfterThree.asHexMatrix, '#32b72f')).to.equal('#32b72f');\n});",
+              "err": {},
+              "uuid": "36856ddb-de56-46c7-83dc-285ee6bd326c",
+              "parentUUID": "801d0dbc-860f-45fb-a8c3-859dc6b73a4f",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "36856ddb-de56-46c7-83dc-285ee6bd326c"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 9140,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.0.1"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": true,
+        "json": true,
+        "spec": true
+      },
+      "version": "6.0.1"
+    }
+  }
+}
