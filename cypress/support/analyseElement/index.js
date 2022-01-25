@@ -1,3 +1,5 @@
+import fs from 'fs';
+
 /**
  * Takes a screenshot of an element and returns the base64 data of the screenshot
  */
