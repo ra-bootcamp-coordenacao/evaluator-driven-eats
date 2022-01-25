@@ -3,7 +3,9 @@
  */
 Cypress.Commands.add('base64screenshot', function (element) {
   return cy.wrap(null).then(() => {
-    cy.task('rmdir', ['cypress', 'screenshots']);
+    if(fs.exists(path.resolve(__dirname, 'cypress', 'screenshots'))) {
+      cy.task('rmdir', ['cypress', 'screenshots']);
+    }
     cy.wait(1000);
 
     return cy
