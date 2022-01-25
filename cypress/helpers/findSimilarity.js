@@ -1,5 +1,4 @@
 export default function findSimilarity(colorsBefore, colorsAfter) {
-  console.log(colorsBefore, colorsAfter);
   if (colorsBefore === colorsAfter) return 1;
   if (colorsBefore === null || colorsAfter === null) return 0;
   if (colorsBefore.length !== colorsAfter.length) return 0;

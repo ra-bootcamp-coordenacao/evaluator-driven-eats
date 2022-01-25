@@ -34,17 +34,16 @@ describe('Layout: Itens e Botão habilitados', () => {
   });
 
   it('Mudança de texto e cor no botão flutuante', () => {
-    cy.contains('Selecione os 3 itens para fechar o pedido').as('button');
+    cy.contains('Selecione os 3 itens').as('button');
     cy.get('@button').should('be.visible');
     cy.shouldNotExistOrShouldNotBeVisible({ text: 'Fechar pedido' });
     cy.analyseElement('@button').as('buttonBefore');
     cy.wait(0);
 
     cy.selectOptions();
-    cy.shouldNotExistOrShouldNotBeVisible({
-      text: 'Selecione os 3 itens para fechar o pedido',
-    });
+    cy.shouldNotExistOrShouldNotBeVisible({ text: 'Selecione os 3 itens' });
     cy.contains('Fechar pedido').should('be.visible');
+    cy.contains('Fechar pedido').as('button');
     cy.analyseElement('@button').as('buttonAfter');
     cy.wait(0).then(function () {
       expect(
