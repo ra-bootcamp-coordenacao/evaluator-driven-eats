@@ -9,11 +9,11 @@ before(() => {
 
 describe('Lógica: Habilitar botão de enviar pedido', () => {
   it('Botão de enviar pedido fica desabilitado até selecionar todos os pedidos', () => {
-    cy.contains('Selecione os 3 itens').as('button');
+    cy.xpath("//*[contains(text(), 'Selecione os 3 itens')]").as('button');
     cy.analyseElement('@button').as('buttonBeforeAll');
     cy.wait(0);
 
-    cy.contains('Selecione os 3 itens').should('be.visible');
+    cy.xpath("//*[contains(text(), 'Selecione os 3 itens')]").should('be.visible');
     cy.xpath(
       "//*[@data-identifier='dishes']//*[@data-identifier='food-option']"
     )
@@ -22,7 +22,7 @@ describe('Lógica: Habilitar botão de enviar pedido', () => {
     cy.analyseElement('@button').as('buttonAfterOne');
     cy.wait(0);
 
-    cy.contains('Selecione os 3 itens').should('be.visible');
+    cy.xpath("//*[contains(text(), 'Selecione os 3 itens')]").should('be.visible');
     cy.xpath(
       "//*[@data-identifier='drinks']//*[@data-identifier='food-option']"
     )
@@ -31,16 +31,16 @@ describe('Lógica: Habilitar botão de enviar pedido', () => {
     cy.analyseElement('@button').as('buttonAfterTwo');
     cy.wait(0);
 
-    cy.contains('Selecione os 3 itens').should('be.visible');
+    cy.xpath("//*[contains(text(), 'Selecione os 3 itens')]").should('be.visible');
     cy.xpath(
       "//*[@data-identifier='desserts']//*[@data-identifier='food-option']"
     )
       .first()
       .click();
-    cy.contains('Fechar pedido').as('button');
+      cy.xpath("//*[contains(text(), 'Fechar pedido')]").as('button');
     cy.analyseElement('@button').as('buttonAfterThree');
     cy.wait(0).then(function () {
-      cy.contains('Fechar pedido').should('be.visible');
+      cy.xpath("//*[contains(text(), 'Fechar pedido')]").should('be.visible');
       expect(
         findSimilarity(
           this.buttonBeforeAll.asHexMatrix.flat(),
