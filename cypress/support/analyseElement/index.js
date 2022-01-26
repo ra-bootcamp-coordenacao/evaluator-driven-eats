@@ -1,14 +1,7 @@
-import fs from 'fs';
-import path from 'path';
-
-/**
- * Takes a screenshot of an element and returns the base64 data of the screenshot
- */
+/*Takes a screenshot of an element and returns the base64 data of the screenshot*/
 Cypress.Commands.add('base64screenshot', function (element) {
   return cy.wrap(null).then(() => {
-    if(fs.exists(path.resolve(__dirname, 'cypress', 'screenshots'))) {
-      cy.task('rmdir', ['cypress', 'screenshots']);
-    }
+    cy.task('rmdir', ['cypress', 'screenshots']);
     cy.wait(1000);
 
     return cy
@@ -31,9 +24,7 @@ const toHex = ([r, g, b]) =>
   g.toString(16).padStart(2, '0') +
   b.toString(16).padStart(2, '0');
 
-/**
- * Analyses a canvas (<canvas>) returning the average of red, green, blue and its brightness
- */
+/*Analyses a canvas (<canvas>) returning the average of red, green, blue and its brightness*/
 function getCanvasData(canvas, ctx) {
   const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
   const data = imageData.data;
@@ -119,8 +110,7 @@ Cypress.Commands.add(
   }
 );
 
-/**
- * Returns the average of red, green and blue of an element, including its brightness.
+/* Returns the average of red, green and blue of an element, including its brightness.
  * startX, startY, width and height are optional parameters. You can use them to get
  * the average values for a part of the element (like a 5px by 5px area on the top left corner: cy.analyseElement("element", 0, 0, 5, 5))
  */

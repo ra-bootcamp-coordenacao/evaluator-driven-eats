@@ -13,7 +13,9 @@ module.exports = (on, config) => {
   on("task", {
     async rmdir(fullpath) {
       const filename = path.join(__dirname, "..", "..", ...fullpath);
-      await fs.rmdirSync(filename, { recursive: true, force: true });
+      if(fs.existsSync(path.resolve(__dirname, 'cypress', 'screenshots'))) {
+        await fs.rmdirSync(filename, { recursive: true, force: true });
+      }
       return null;
     },
 
