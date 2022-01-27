@@ -30,7 +30,9 @@ describe('Lógica: Conteúdo da mensagem de acordo com o combo', () => {
       });
     });
   });
+});
 
+describe("Lógica: Formatação de mensagem conforme requisito", () => {
   it('Formatação de mensagem de acordo com o formato proposto', () => {
     cy.selectOptions().then((data) => {
       cy.orderConfirm().then(() => {
@@ -40,4 +42,4 @@ describe('Lógica: Conteúdo da mensagem de acordo com o combo', () => {
       });
     });
   });
-});
+})
