@@ -4,7 +4,7 @@
   "description": "Driven Projects Evaluator CLI",
   "main": "index.js",
   "scripts": {
-    "test": "rm -rf cypress/reports && cypress run --headless --config video=false",
+    "test": "rm -rf cypress/reports && cypress run --browser chrome",
     "merge": "mochawesome-merge cypress/reports/*.json > output.json"
   },
   "keywords": [],
