@@ -1,6 +1,7 @@
 function orderConfirm() {
   cy.window().then((win) => {
     cy.stub(win, 'prompt').returns('Test');
+    cy.stub(win, 'open').callsFake(url => win.location.href = url)
     cy.xpath("//*[contains(text(), 'Fechar pedido')]").click();
     cy.wait(0);
 
