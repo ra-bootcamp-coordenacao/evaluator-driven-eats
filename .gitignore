@@ -6,3 +6,5 @@ cypress/reports
 cypress/screenshots
 cypress/videos
 .projects
+output.json
+

@@ -6,7 +6,7 @@ function ensureElementExists(descriptor) {
     let element;
 
     if (isText) {
-      element = doc.evaluate(`//*[contains(text(), "${descriptor.text}")]`, doc, null, 7).snapshotItem(0);
+      element = doc.evaluate(`//*[contains(text(),"${descriptor.text}")]`, doc, null, 7).snapshotItem(0);
     } else if (isXPath) {
       element = doc.evaluate(descriptor.xpath, doc, null, 7).snapshotItem(0);
     } else {

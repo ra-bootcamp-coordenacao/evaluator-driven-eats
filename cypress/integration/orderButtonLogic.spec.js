@@ -1,4 +1,5 @@
 /// <reference types='cypress-xpath' />
+import xpath from 'cypress-xpath';
 import findInMatrix from '../helpers/findInMatrix';
 import findSimilarity from '../helpers/findSimilarity';
 

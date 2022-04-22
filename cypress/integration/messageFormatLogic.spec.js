@@ -1,4 +1,5 @@
 /// <reference types='cypress-xpath' />
+import xpath from 'cypress-xpath';
 import messageMatch from '../helpers/messageMatch';
 
 beforeEach(() => {
