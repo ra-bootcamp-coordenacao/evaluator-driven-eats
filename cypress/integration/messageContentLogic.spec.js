@@ -1,5 +1,4 @@
 /// <reference types='cypress-xpath' />
-import xpath from 'cypress-xpath';
 import messageMatch from '../helpers/messageMatch';
 
 beforeEach(() => {
@@ -9,15 +8,6 @@ beforeEach(() => {
   });
 
   cy.visit(Cypress.env('url'));
-});
-
-describe('Lógica: Envio por WhatsApp', () => {
-  it('O pedido é encaminhado por WhatsApp após clicar em enviar o pedido', () => {
-    cy.selectOptions();
-    cy.orderConfirm();
-
-    cy.url().should('contain', 'https://api.whatsapp.com/send/?phone');
-  });
 });
 
 describe('Lógica: Conteúdo da mensagem de acordo com o combo', () => {
@@ -31,15 +21,3 @@ describe('Lógica: Conteúdo da mensagem de acordo com o combo', () => {
     });
   });
 });
-
-describe("Lógica: Formatação de mensagem conforme requisito", () => {
-  it('Formatação de mensagem de acordo com o formato proposto', () => {
-    cy.selectOptions().then((data) => {
-      cy.orderConfirm().then(() => {
-        cy.window().then((win) => {
-          expect(messageMatch(win.location.href, data, 'format')).to.equal(2);
-        });
-      });
-    });
-  });
-})
