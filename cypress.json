@@ -1,5 +1,5 @@
 {
-  "env": { "url": "https://lemoscaio.github.io/projeto3-driveneats/" },
+  "env": { "url": "https://localhost:3000/" },
   "chromeWebSecurity": false,
   "reporter": "cypress-multi-reporters",
   "video": false,
