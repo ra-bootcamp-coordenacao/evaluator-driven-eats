@@ -1,5 +1,7 @@
 {
-  "env": { "url": "https://localhost:3000/" },
+  "env": {
+    "url": "http://evaluator-tool---static-server:8000"
+  },
   "chromeWebSecurity": false,
   "reporter": "cypress-multi-reporters",
   "video": false,
