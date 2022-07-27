@@ -1,9 +1,8 @@
 export default function messageMatch(url, data, checkFormat) {
   let match = 0;
-  let messageRegex = /Olá,gostariadefazeropedido:-Prato:(([A-zÀ-ÿ])+?)-Bebida:(([A-zÀ-ÿ])+?)-Sobremesa:(([A-zÀ-ÿ])+?)Total:R\$[0-9]*\,[0-9]+/;
+  let messageRegex = /Olá,gostariadefazeropedido:-Prato:((?s).*)-Bebida:((?s).*)-Sobremesa:((?s).*)Total:R\$[0-9]*\,[0-9]+/;
   let decodedURL = decodeURIComponent(url);
   decodedURL = decodedURL.replace(/\s/g, '');
-  decodedURL = decodedURL.replace(' ', '');
 
   let dish = data.dishTitle.replace(/\s/g, '');
   let drink = data.drinkTitle.replace(/\s/g, '');

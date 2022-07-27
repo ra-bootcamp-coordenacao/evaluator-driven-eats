@@ -54,9 +54,9 @@ function clickAndRetrieve() {
 
 function priceCalculation(dishPrice, drinkPrice, dessertPrice) {
   return (
-    parseFloat(dishPrice.replace('R$ ', '').replace(',', '.')) +
-    parseFloat(drinkPrice.replace('R$ ', '').replace(',', '.')) +
-    parseFloat(dessertPrice.replace('R$ ', '').replace(',', '.'))
+    parseFloat(dishPrice.replace('R$', '').replace(',', '.').replace(/\s/g, '')) +
+    parseFloat(drinkPrice.replace('R$', '').replace(',', '.').replace(/\s/g, '')) +
+    parseFloat(dessertPrice.replace('R$', '').replace(',', '.').replace(/\s/g, ''))
   );
 }
 
