@@ -7,6 +7,11 @@ beforeEach(() => {
     req.reply('<h1>Hello!</h1>');
   });
 
+  cy.intercept(/https:\/\/wa.me\/.*/g, (req) => {
+    req.headers['Content-Type'] = 'text/html';
+    req.reply('<h1>Hello!</h1>');
+  });
+
   cy.visit(Cypress.env('url'));
 });
 
@@ -15,6 +20,15 @@ describe('Lógica: Envio por WhatsApp', () => {
     cy.selectOptions();
     cy.orderConfirm();
 
-    cy.url().should('contain', 'https://api.whatsapp.com/send/?phone');
+    cy.url().then((url) => {
+      const matchers = [
+        /https:\/\/api.whatsapp.com\/.*/g,
+        /https:\/\/wa.me\/.*/g
+      ];
+
+      const matches = matchers.reduce((acc, val) => val.test(url) || acc, false);
+
+      expect(matches).to.equal(true, 'Esperava que o link aberto tivesse "https://api.whatsapp.com/" e "https://wa.me/"');
+    });
   });
 });
