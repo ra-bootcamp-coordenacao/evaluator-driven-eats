@@ -17,7 +17,7 @@ export default function messageMatch(url, data, checkFormat) {
     decodedURL.includes(dish) &&
     decodedURL.includes(drink) &&
     decodedURL.includes(dessert) &&
-    decodedURL.includes(total.replace('.', ','))
+    decodedURL.replace('.', ',').includes(total.replace('.', ','))
   ) {
     match = 1;
   }
