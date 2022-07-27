@@ -8,6 +8,11 @@ beforeEach(() => {
     req.reply('<h1>Hello!</h1>');
   });
 
+  cy.intercept(/https:\/\/wa.me\/.*/g, (req) => {
+    req.headers['Content-Type'] = 'text/html';
+    req.reply('<h1>Hello!</h1>');
+  });
+
   cy.visit(Cypress.env('url'));
 });
 
