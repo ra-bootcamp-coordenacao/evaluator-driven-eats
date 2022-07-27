@@ -1,6 +1,6 @@
 export default function messageMatch(url, data, checkFormat) {
   let match = 0;
-  let messageRegex = /Olá%2Cgostariadefazeropedido%3A\sPrato%3A(([A-zÀ-ÿ])+?)\sBebida%3A(([A-zÀ-ÿ])+?)\sSobremesa%3A(([A-zÀ-ÿ])+?)\sTotal%3AR%24[0-9]*\.[0-9]+/;
+  let messageRegex = /Olá,gostariadefazeropedido:-Prato:(([A-zÀ-ÿ])+?)-Bebida:(([A-zÀ-ÿ])+?)-Sobremesa:(([A-zÀ-ÿ])+?)Total:R\$[0-9]*\,[0-9]+/;
   let decodedURL = decodeURIComponent(url);
   decodedURL = decodedURL.replace(/\s/g, ' ');
   decodedURL = decodedURL.replace(/\n/g, ' ');
@@ -11,6 +11,10 @@ export default function messageMatch(url, data, checkFormat) {
   let total = data.totalPrice.toFixed(2);
 
   if (!!checkFormat) {
+    decodedURL = decodedURL.replace(/\s/g, '');
+    decodedURL = decodedURL.replace(/\n/g, '');
+    decodedURL = decodedURL.replace(' ', '');
+
     if (messageRegex.test(decodedURL)) return 2;
   }
 
