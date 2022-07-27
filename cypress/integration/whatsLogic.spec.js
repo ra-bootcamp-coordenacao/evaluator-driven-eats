@@ -22,8 +22,8 @@ describe('Lógica: Envio por WhatsApp', () => {
 
     cy.url().then((url) => {
       const matchers = [
-        /https:\/\/api.whatsapp.com\/.*/g,
-        /https:\/\/wa.me\/.*/g
+        /api.whatsapp.com\/.*/g,
+        /wa.me\/.*/g
       ];
 
       const matches = matchers.reduce((acc, val) => val.test(url) || acc, false);
