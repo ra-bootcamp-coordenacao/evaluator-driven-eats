@@ -10,6 +10,9 @@ export default function messageMatch(url, data, checkFormat) {
   let total = data.totalPrice.toFixed(2);
 
   if (!!checkFormat) {
+    if(!decodedURL.match(/R\$[0-9]*\,[0-9]+/)) {
+      decodedURL = decodedURL.replace('.', ',');
+    }
     if (messageRegex.test(decodedURL)) return 2;
   }
 
