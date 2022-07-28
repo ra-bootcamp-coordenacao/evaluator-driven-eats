@@ -17,8 +17,9 @@ function ensureElementExists(descriptor) {
   });
 }
 
-Cypress.Commands.add("runIfElementExists", function (descriptor, runOnElementExists) {
+Cypress.Commands.add("runIfElementExists", function (descriptor, runOnElementExists, runOnElementNotExists) {
   return ensureElementExists(descriptor).then(elementExists => {
     if (elementExists && typeof runOnElementExists === "function") runOnElementExists(); 
+    if (!elementExists && typeof runOnElementNotExists === "function") runOnElementNotExists();
   });
 });
