@@ -33,8 +33,9 @@ describe('Layout: Itens e Botão habilitados', () => {
   });
 
   it('Mudança de texto e cor no botão flutuante', () => {
-    cy.xpath("//*[contains(text(),'Selecione os 3 itens')]").as('button');
-    cy.get('@button').should('be.visible');
+    cy.getExistingElement([{text: 'fechar pedido'}]).then(e => {
+      expect(e).to.exist;
+    });
     cy.shouldNotExistOrShouldNotBeVisible({
       text: 'Fechar pedido'
     });
@@ -44,8 +45,7 @@ describe('Layout: Itens e Botão habilitados', () => {
     cy.shouldNotExistOrShouldNotBeVisible({
       text: 'Selecione os 3 itens'
     });
-    cy.xpath("//*[contains(text(),'Fechar pedido')]").should('be.visible');
-    cy.xpath("//*[contains(text(),'Fechar pedido')]").as('button');
+    cy.get('body').contains(/^fechar pedido$/i).as('button').should('be.visible');
     cy.analyseElement('@button').as('buttonAfter');
     cy.wait(0).then(function () {
       expect(

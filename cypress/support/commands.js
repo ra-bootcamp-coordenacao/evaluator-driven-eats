@@ -6,3 +6,4 @@ import './removeUnwantedCSSProperty';
 import './runIfElementExists';
 import './selectOptions';
 import './orderConfirm';
+import './getExistingElement';
