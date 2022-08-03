@@ -28,8 +28,8 @@ describe('Lógica: Habilitar botão de enviar pedido', () => {
       throw new Error(`Botão não está desabilitado corretamente`);
     })
 
-    cy.get('body').contains(/^selecione os 3 itens/i).first().as('button');
-    cy.get('body').contains(/^selecione os 3 itens/i).should('be.visible');
+    cy.getExistingElement([{text: '3 itens'}, {text: 'três itens'}, {text: 'tres itens'}]).as('button');
+    cy.get('@button').should('be.visible');
     cy.get('@button').click({force: true});
     cy.get('@prompt').should('not.be.called')
     cy.shouldNotExistOrShouldNotBeVisible({xpath: "//*[@data-identifier='confirmation-dialog']"}, 'O modal de confirmação não deveria estar visível');
@@ -42,6 +42,7 @@ describe('Lógica: Habilitar botão de enviar pedido', () => {
     cy.get('@firstDish').click();
     cy.shouldNotExistOrShouldNotBeVisible({text: "Fechar pedido"}, 'O botão de confirmação deveria estar desabilitado');
 
+    cy.getExistingElement([{text: '3 itens'}, {text: 'três itens'}, {text: 'tres itens'}]).as('button');
     cy.get('body').contains(/^selecione os 3 itens/i).should('be.visible');
     cy.xpath("//*[@data-identifier='drinks']//*[@data-identifier='food-option']").first().click();
     cy.analyseElement('@button').as('buttonAfterTwo');

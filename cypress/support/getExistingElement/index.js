@@ -21,10 +21,6 @@ function searchElement(descriptors) {
         element = doc.querySelector(descriptors[i].selector);
       }
 
-      if(i === descriptors.length - 1 && element.length === 0) {
-        element = null;
-      }
-
       if(isText && element.length > 0) {
         return element[element.length - 1];
       } else if (isXpath || isSelector) {
