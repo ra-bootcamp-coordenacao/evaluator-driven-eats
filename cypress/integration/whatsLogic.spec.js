@@ -17,7 +17,7 @@ beforeEach(() => {
 
 describe('Lógica: Envio por WhatsApp', () => {
   it('O pedido é encaminhado por WhatsApp após clicar em enviar o pedido', () => {
-    cy.selectOptions();
+    cy.selectOptions({ ignoreOptionData: true });
     cy.orderConfirm();
 
     cy.url().then((url) => {

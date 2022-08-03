@@ -40,7 +40,7 @@ describe('Layout: Itens e Botão habilitados', () => {
       text: 'Fechar pedido'
     });
 
-    cy.selectOptions();
+    cy.selectOptions({ ignoreOptionData: true });
     cy.shouldNotExistOrShouldNotBeVisible({
       text: 'Selecione os 3 itens'
     });

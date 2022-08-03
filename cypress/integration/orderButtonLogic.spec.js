@@ -26,7 +26,7 @@ describe('Lógica: Habilitar botão de enviar pedido', () => {
   it('Botão de enviar pedido fica desabilitado até selecionar todos os pedidos', () => {
     cy.on('url:changed', () => {
       throw new Error(`Botão não está desabilitado corretamente`);
-    })
+    });
 
     cy.getExistingElement([{text: '3 itens'}, {text: 'três itens'}, {text: 'tres itens'}]).as('button');
     cy.get('@button').should('be.visible');
@@ -51,7 +51,7 @@ describe('Lógica: Habilitar botão de enviar pedido', () => {
     cy.getExistingElement([{text: '3 itens'}, {text: 'três itens'}, {text: 'tres itens'}]).should('be.visible');
     cy.xpath("//*[@data-identifier='desserts']//*[@data-identifier='food-option']").first().click();
     cy.shouldNotExistOrShouldNotBeVisible({ text: 'Selecione os 3 itens' });
-    cy.getExistingElement([{text: 'fechar pedido'}, {text: 'fechar o pedido'}, {text: 'fazer pedido'}, {text: 'fazer o pedido'}]).as('button');
+    cy.getExistingElement([{text: 'fechar pedido'}, {text: 'fechar o pedido'}, {text: 'fazer pedido'}, {text: 'fazer o pedido'}, { text: 'confirme' }, { text: 'confirmar' }]).as('button');
     cy.analyseElement('@button').as('buttonAfterThree');
 
     cy.wait(0).then(function () {
