@@ -26,7 +26,7 @@ describe('Lógica: Habilitar botão de enviar pedido', () => {
   it('Botão de enviar pedido fica desabilitado até selecionar todos os pedidos', () => {
     cy.on('url:changed', () => {
       throw new Error(`Botão não está desabilitado corretamente`);
-    })
+    });
 
     cy.xpath("//*[contains(text(),'Selecione os 3 itens')]").first().as('button');
     cy.xpath("//*[contains(text(),'Selecione os 3 itens')]").should('be.visible');
@@ -36,18 +36,21 @@ describe('Lógica: Habilitar botão de enviar pedido', () => {
 
     cy.analyseElement('@button').as('buttonBeforeAll');
 
-    cy.xpath("//*[@data-identifier='dishes']//*[@data-identifier='food-option']").eq(0).as('firstDish').click();
+    cy.xpath("//*[@data-identifier='dishes']//*[@data-identifier='food-option']").eq(0).click();
+    cy.xpath("//*[contains(text(),'Selecione os 3 itens')]").first().as('button');
     cy.analyseElement('@button').as('buttonAfterOne');
     cy.xpath("//*[@data-identifier='dishes']//*[@data-identifier='food-option']").eq(1).click();
-    cy.get('@firstDish').click();
+    cy.xpath("//*[@data-identifier='dishes']//*[@data-identifier='food-option']").eq(0).click();
     cy.shouldNotExistOrShouldNotBeVisible({text: "Fechar pedido"}, 'O botão de confirmação deveria estar desabilitado');
 
     cy.xpath("//*[contains(text(),'Selecione os 3 itens')]").should('be.visible');
     cy.xpath("//*[@data-identifier='drinks']//*[@data-identifier='food-option']").first().click();
+    cy.xpath("//*[contains(text(),'Selecione os 3 itens')]").first().as('button');
     cy.analyseElement('@button').as('buttonAfterTwo');
 
     cy.xpath("//*[contains(text(),'Selecione os 3 itens')]").should('be.visible');
     cy.xpath("//*[@data-identifier='desserts']//*[@data-identifier='food-option']").first().click();
+    cy.shouldNotExistOrShouldNotBeVisible({ text: 'Selecione os 3 itens' });
     cy.xpath("//*[contains(text(),'Fechar pedido')]").as('button');
     cy.analyseElement('@button').as('buttonAfterThree');
 
