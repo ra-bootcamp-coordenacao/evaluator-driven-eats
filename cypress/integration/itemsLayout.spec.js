@@ -35,18 +35,21 @@ describe('Layout: Itens e Botão habilitados', () => {
   it('Mudança de texto e cor no botão flutuante', () => {
     cy.getExistingElement([{text: 'fechar pedido'}]).then(e => {
       expect(e).to.exist;
+      cy.analyseElement(e).as('buttonBefore');
     });
     cy.shouldNotExistOrShouldNotBeVisible({
       text: 'Fechar pedido'
     });
-    cy.analyseElement('@button').as('buttonBefore');
 
     cy.selectOptions();
     cy.shouldNotExistOrShouldNotBeVisible({
       text: 'Selecione os 3 itens'
     });
-    cy.get('body').contains(/^fechar pedido$/i).as('button').should('be.visible');
-    cy.analyseElement('@button').as('buttonAfter');
+
+    cy.getExistingElement([{text: 'fechar pedido'}]).then(e => {
+      expect(e).to.exist;
+      cy.analyseElement(e).as('buttonAfter');
+    });
     cy.wait(0).then(function () {
       expect(
         findSimilarity(
