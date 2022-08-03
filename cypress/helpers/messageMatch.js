@@ -4,11 +4,11 @@ export default function messageMatch(url, data, checkFormat) {
   let searchParams = new URLSearchParams(url.split("?")[1]);
   let text = searchParams.get("text");
   let decodedText = decodeURIComponent(text);
-  decodedText = decodedText.replace(/\s/g, '');
+  decodedText = decodedText.replace(/\s/g, '').toLowerCase();
 
-  let dish = data.dishTitle.replace(/\s/g, '');
-  let drink = data.drinkTitle.replace(/\s/g, '');
-  let dessert = data.dessertTitle.replace(/\s/g, '');
+  let dish = data.dishTitle.replace(/\s/g, '').toLowerCase();
+  let drink = data.drinkTitle.replace(/\s/g, '').toLowerCase();
+  let dessert = data.dessertTitle.replace(/\s/g, '').toLowerCase();
   let total = data.totalPrice.toFixed(2);
 
   if (!!checkFormat) {
