@@ -1,7 +1,8 @@
 {
   "env": {
-    "url": "http://localhost:8000"
+    "url": "http://challenge:3000"
   },
+  "baseUrl": "http://challenge:3000",
   "chromeWebSecurity": false,
   "reporter": "cypress-multi-reporters",
   "video": false,
