@@ -30,7 +30,7 @@ describe('Lógica: Habilitar botão de enviar pedido', () => {
 
     cy.xpath("//*[contains(text(),'Selecione os 3 itens')]").first().as('button');
     cy.xpath("//*[contains(text(),'Selecione os 3 itens')]").should('be.visible');
-    cy.get('@button').click();
+    cy.get('@button').click({force: true});
     cy.get('@prompt').should('not.be.called')
     cy.shouldNotExistOrShouldNotBeVisible({xpath: "//*[@data-identifier='confirmation-dialog']"}, 'O modal de confirmação não deveria estar visível');
 
