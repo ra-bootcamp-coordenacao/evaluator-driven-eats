@@ -40,7 +40,7 @@ describe('Layout: Itens e Botão habilitados', () => {
     });
     cy.analyseElement('@button').as('buttonBefore');
 
-    cy.selectOptions();
+    cy.selectOptions({ ignoreOptionData: true });
     cy.shouldNotExistOrShouldNotBeVisible({
       text: 'Selecione os 3 itens'
     });
