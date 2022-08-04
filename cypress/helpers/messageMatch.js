@@ -1,6 +1,6 @@
 export default function messageMatch(url, data, checkFormat) {
   let match = 0;
-  let messageRegex = /Olá,gostariadefazeropedido:-Prato:[\s\S]*-Bebida:[\s\S]*-Sobremesa:[\s\S]*Total:R\$[0-9]*\,[0-9]+.*/;
+  let messageRegex = /olá,gostariadefazeropedido:-prato:[\s\S]*-bebida:[\s\S]*-sobremesa:[\s\S]*total:r\$[0-9]*\,[0-9]+.*/;
   let searchParams = new URLSearchParams(url.split("?")[1]);
   let text = searchParams.get("text");
   let decodedText = decodeURIComponent(text);
