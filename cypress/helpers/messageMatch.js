@@ -1,27 +1,32 @@
+import { compareTwoStrings } from "string-similarity";
+
 export default function messageMatch(url, data, checkFormat) {
   let match = 0;
-  let messageRegex = /olá,gostariadefazeropedidoprato[\s\S]*bebida[\s\S]*sobremesa[\s\S]*totalr\$[0-9]*\,[0-9]+.*/;
-  let searchParams = new URLSearchParams(url.split("?")[1]);
-  let text = searchParams.get("text");
+  const searchParams = new URLSearchParams(url.split("?")[1]);
+  const text = searchParams.get("text");
   let decodedText = decodeURIComponent(text);
   decodedText = decodedText.replace(/\s/g, '').toLowerCase();
 
   let dish = data.dishTitle.replace(/\s/g, '').toLowerCase();
   let drink = data.drinkTitle.replace(/\s/g, '').toLowerCase();
   let dessert = data.dessertTitle.replace(/\s/g, '').toLowerCase();
-  let total = data.totalPrice.toFixed(2);
+  let total = data.totalPrice.toFixed(2).replace('.', ',');
 
   if (!!checkFormat) {
-    if(!decodedText.match(/R\$[0-9]*\,[0-9]+/)) {
-      decodedText = decodedText.replace('.', ',');
-    }
+    const baseMessage = `olá,gostariadefazeropedidoprato${dish}bebida${drink}sobremesa${dessert}totalr$${total}`;
 
     decodedText = decodedText.replace(/\*/g, '');
     decodedText = decodedText.replace(/\:/g, '');
     decodedText = decodedText.replace(/\-/g, '');
     decodedText = decodedText.replace(/\_/g, '');
 
-    if (messageRegex.test(decodedText)) return 2;
+    const similarity = compareTwoStrings(baseMessage, decodedText);
+    console.log(similarity);
+
+    if (similarity > 0.8) {
+      match = 2;
+      return match;
+    }
   }
 
   if (
