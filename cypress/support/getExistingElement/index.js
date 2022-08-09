@@ -12,10 +12,12 @@ function searchElement(descriptors) {
       if (isText) {
         if(xpath2.evaluate(`//*[fn:matches(., "${descriptors[i].text}", "i")]`, doc, null, null).length > 0) {
           element = xpath2.evaluate(`//*[fn:matches(., "${descriptors[i].text}", "i")]`, doc, null, null);
+          if (element === doc) element = null;
         }
       } else if(isXpath) {
         if (xpath2.evaluate(`${descriptors[i].xpath}`, doc, null, null).length > 0) {
           element = xpath2.evaluate(`${descriptors[i].xpath}`, doc, null, null);
+          if (element === doc) element = null;
         }
       } else if(isSelector) {
         element = doc.querySelector(descriptors[i].selector);

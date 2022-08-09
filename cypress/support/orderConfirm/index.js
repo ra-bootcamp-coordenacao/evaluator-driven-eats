@@ -2,7 +2,7 @@ function orderConfirm() {
   cy.window().then((win) => {
     cy.stub(win, 'prompt').returns('Test');
     cy.stub(win, 'open').callsFake(url => win.location.href = url)
-    cy.getExistingElement([{text: 'fechar pedido'}, {text: 'fechar o pedido'}, {text: 'fazer pedido'}, {text: 'fazer o pedido'}]).click();
+    cy.getExistingElement([{text: 'fechar pedido'}, {text: 'fechar o pedido'}, {text: 'fazer pedido'}, {text: 'fazer o pedido'}, { text: 'finalizar' }, { text: 'finalize' }]).click();
     cy.wait(0);
 
     cy.runIfElementExists(
