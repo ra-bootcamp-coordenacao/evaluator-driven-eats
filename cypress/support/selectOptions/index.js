@@ -53,12 +53,23 @@ function clickAndRetrieve({ ignoreOptionData = false } = {}) {
         );
       }
 
+      this.totalPrice = totalPrice;
+    });
+
+    return cy.wait(0).then(function() {
+      console.log({
+        dishTitle: this.dishTitle,
+        drinkTitle: this.drinkTitle,
+        dessertTitle: this.dessertTitle,
+        totalPrice: this.totalPrice,
+      });
       return cy.wrap({
         dishTitle: this.dishTitle,
         drinkTitle: this.drinkTitle,
         dessertTitle: this.dessertTitle,
-        totalPrice,
+        totalPrice: this.totalPrice,
       });
+
     });
 }
 
