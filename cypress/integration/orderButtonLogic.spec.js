@@ -31,7 +31,7 @@ describe('Lógica: Habilitar botão de enviar pedido', () => {
     cy.getExistingElement([{text: '3 itens'}, {text: 'três itens'}, {text: 'tres itens'}]).as('button');
     cy.get('@button').should('be.visible');
     cy.get('@button').click({force: true});
-    cy.get('@prompt').should('not.be.called')
+    cy.get('@prompt').should('not.be.called');
     cy.shouldNotExistOrShouldNotBeVisible({xpath: "//*[@data-identifier='confirmation-dialog']"}, 'O modal de confirmação não deveria estar visível');
 
     cy.reload();
@@ -53,11 +53,11 @@ describe('Lógica: Habilitar botão de enviar pedido', () => {
     cy.getExistingElement([{text: '3 itens'}, {text: 'três itens'}, {text: 'tres itens'}]).should('be.visible');
     cy.xpath("//*[@data-identifier='desserts']//*[@data-identifier='food-option']").first().click();
     cy.shouldNotExistOrShouldNotBeVisible({ text: 'Selecione os 3 itens' });
-    cy.getExistingElement([{text: 'fechar pedido'}, {text: 'fechar o pedido'}, {text: 'fazer pedido'}, {text: 'fazer o pedido'}, { text: 'confirme' }, { text: 'confirmar' }]).as('button');
+    cy.getExistingElement([{text: 'fechar pedido'}, {text: 'fechar o pedido'}, {text: 'fazer pedido'}, {text: 'fazer o pedido'}, { text: 'confirme' }, { text: 'finalizar' }]).as('button');
     cy.analyseElement('@button').as('buttonAfterThree');
 
     cy.wait(0).then(function () {
-      cy.getExistingElement([{text: 'fechar pedido'}, {text: 'fechar o pedido'}, {text: 'fazer pedido'}, {text: 'fazer o pedido'}]).should('be.visible');
+      cy.getExistingElement([{text: 'fechar pedido'}, {text: 'fechar o pedido'}, {text: 'fazer pedido'}, {text: 'fazer o pedido'}, {text: 'finalizar pedido'}]).should('be.visible');
       expect(findSimilarity(this.buttonBeforeAll.asHexMatrix.flat(), this.buttonAfterOne.asHexMatrix.flat())).to.equal(1);
 
       expect(findSimilarity(this.buttonAfterOne.asHexMatrix.flat(), this.buttonAfterTwo.asHexMatrix.flat())).to.equal(1);
