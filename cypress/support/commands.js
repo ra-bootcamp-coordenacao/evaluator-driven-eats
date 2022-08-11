@@ -1,9 +1,10 @@
 import './analyseElement';
-import './placeholderContains';
-import './shouldNotExistOrShouldNotBeVisible';
+import './getExistingElement';
 import './isVisible';
+import './orderConfirm';
+import './placeholderContains';
+import './removeUnwantedAttribute';
 import './removeUnwantedCSSProperty';
 import './runIfElementExists';
 import './selectOptions';
-import './orderConfirm';
-import './getExistingElement';
+import './shouldNotExistOrShouldNotBeVisible';

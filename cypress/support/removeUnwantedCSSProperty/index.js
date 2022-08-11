@@ -13,14 +13,14 @@ function getDefaultStylesForTag(tag, document, window) {
 function removePropertyFromAnyCSSStyle(unwantedProperty, document, window, defaultStylesTag = "div") {
   const defaultStyles = getDefaultStylesForTag(defaultStylesTag, document, window);
   const propertyName = kebabToCamel(unwantedProperty);
-  
+
   for (const stylesheet of document.styleSheets) {
     for (const rule of stylesheet.rules) {
       if (!rule.style) continue;
 
       const setProperties = Object.keys(rule.style).filter(key => !isNaN(key)).map(key => rule.style[key]);
       const isPropertySet = setProperties.reduce((current, property) => current || property === unwantedProperty, false);
-      
+
       if (isPropertySet) {
         if (rule.style[propertyName] !== defaultStyles[propertyName]) {
           rule.style[propertyName] = "initial";

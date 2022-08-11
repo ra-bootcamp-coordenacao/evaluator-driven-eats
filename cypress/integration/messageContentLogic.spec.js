@@ -18,6 +18,8 @@ beforeEach(() => {
 
 describe('Lógica: Conteúdo da mensagem de acordo com o combo', () => {
   it('A mensagem deve estar com pratos e preço de acordo com o que o usuário escolheu', () => {
+    cy.removeUnwantedAttribute('a', 'target');
+
     cy.selectOptions().then((data) => {
       cy.orderConfirm().then(() => {
         cy.window().then((win) => {

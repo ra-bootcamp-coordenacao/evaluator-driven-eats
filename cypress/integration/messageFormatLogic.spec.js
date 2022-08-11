@@ -18,6 +18,8 @@ beforeEach(() => {
 
 describe("Lógica: Formatação de mensagem conforme requisito", () => {
   it('Formatação de mensagem de acordo com o formato proposto', () => {
+    cy.removeUnwantedAttribute('a', 'target');
+
     cy.selectOptions().then((data) => {
       cy.orderConfirm().then(() => {
         cy.window().then((win) => {
