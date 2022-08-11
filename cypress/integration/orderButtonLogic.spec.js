@@ -66,7 +66,7 @@ describe('Lógica: Habilitar botão de enviar pedido', () => {
 
       expect(findSimilarity(this.buttonAfterTwo.asHexMatrix.flat(), this.buttonAfterThree.asHexMatrix.flat())).to.equal(0);
 
-      expect(findInMatrix(this.buttonAfterThree.asHexMatrix, '#32b72f')).to.equal('#32b72f');
+      expect(findInMatrix(this.buttonAfterThree.asHexMatrix, '#32b72f')).to.be.true;
     });
   });
 

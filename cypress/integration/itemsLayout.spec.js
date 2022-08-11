@@ -26,9 +26,7 @@ describe('Layout: Itens e Botão habilitados', () => {
         )
       ).to.equal(0);
 
-      expect(findInMatrix(this.afterColors.asHexMatrix, '#32b72f')).to.equal(
-        '#32b72f'
-      );
+      expect(findInMatrix(this.afterColors.asHexMatrix, '#32b72f')).to.be.true;
     });
   });
 
