@@ -33,7 +33,7 @@ export default function messageMatch(url, data, checkFormat) {
     decodedText.includes(dish) &&
     decodedText.includes(drink) &&
     decodedText.includes(dessert) &&
-    decodedText.replace('.', ',').includes(total.replace('.', ','))
+    decodedText.replace('.', ',').includes(total)
   ) {
     match = 1;
   } else {

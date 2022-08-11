@@ -57,7 +57,7 @@ describe('Lógica: Habilitar botão de enviar pedido', () => {
     cy.analyseElement('@button').as('buttonAfterThree');
 
     cy.wait(0).then(function () {
-      cy.getExistingElement([{text: 'fechar pedido'}, {text: 'fechar o pedido'}, {text: 'fazer pedido'}, {text: 'fazer o pedido'}, {text: 'finalizar pedido'}]).should('be.visible');
+      cy.getExistingElement([{text: 'fechar pedido'}, {text: 'fechar o pedido'}, {text: 'fazer pedido'}, {text: 'fazer o pedido'}, { text: 'confirme' }, { text: 'finalizar' }]).should('be.visible');
       expect(findSimilarity(this.buttonBeforeAll.asHexMatrix.flat(), this.buttonAfterOne.asHexMatrix.flat())).to.equal(1);
 
       expect(findSimilarity(this.buttonAfterOne.asHexMatrix.flat(), this.buttonAfterTwo.asHexMatrix.flat())).to.equal(1);
