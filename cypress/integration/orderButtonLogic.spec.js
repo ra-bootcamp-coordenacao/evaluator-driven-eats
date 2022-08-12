@@ -17,7 +17,10 @@ beforeEach(() => {
   cy.visit(Cypress.env('url'), {
     onBeforeLoad(win) {
       cy.stub(win, 'prompt').returns('p').as('prompt');
-      cy.stub(win, 'open').callsFake(url => win.location.href = url)
+      cy.stub(win, 'open').callsFake(url => {
+        setTimeout(() => win.location.href = url, 0);
+        return win;
+      });
     }
   });
 });
@@ -27,7 +30,7 @@ describe('Lógica: Habilitar botão de enviar pedido', () => {
     cy.on('url:changed', () => {
       throw new Error(`Botão não está desabilitado corretamente`);
     });
-    
+
     cy.removeUnwantedAttribute('a', 'target');
 
     cy.getExistingElement([{text: '3 itens'}, {text: 'três itens'}, {text: 'tres itens'}]).as('button');
