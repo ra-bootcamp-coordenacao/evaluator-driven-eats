@@ -3,6 +3,7 @@ function orderConfirm() {
     cy.stub(win, 'prompt').returns('p');
     cy.stub(win, 'open').callsFake(url => {
       setTimeout(() => win.location.href = url, 0);
+      return win;
     });
     cy.getExistingElement([{text: 'fechar pedido'}, {text: 'fechar o pedido'}, {text: 'fazer pedido'}, {text: 'fazer o pedido'}, { text: 'confirme' }, { text: 'finalizar' }, { text: 'finalize'}]).click();
     cy.wait(0);
