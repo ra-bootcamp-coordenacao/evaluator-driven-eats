@@ -27,7 +27,7 @@ describe('Lógica: Habilitar botão de enviar pedido', () => {
     cy.on('url:changed', () => {
       throw new Error(`Botão não está desabilitado corretamente`);
     });
-
+    
     cy.removeUnwantedAttribute('a', 'target');
 
     cy.getExistingElement([{text: '3 itens'}, {text: 'três itens'}, {text: 'tres itens'}]).as('button');
@@ -71,12 +71,11 @@ describe('Lógica: Habilitar botão de enviar pedido', () => {
   });
 
   it('Botão é habilitado ao selecionar os três', () => {
-    cy.removeUnwantedAttribute('a', 'target');
-
     cy.xpath("//*[@data-identifier='dishes']//*[@data-identifier='food-option']").eq(0).click();
     cy.xpath("//*[@data-identifier='drinks']//*[@data-identifier='food-option']").eq(0).click();
     cy.xpath("//*[@data-identifier='desserts']//*[@data-identifier='food-option']").eq(0).click();
     cy.getExistingElement([{text: 'fechar pedido'}, {text: 'fechar o pedido'}, {text: 'fazer pedido'}, {text: 'fazer o pedido'}, { text: 'confirme' }, { text: 'finalizar' }, { text: 'finalize'}]).as('orderConfirmButton').should('be.visible');
+    cy.removeUnwantedAttribute('a', 'target');
     cy.get('@orderConfirmButton').click();
 
     cy.runIfElementExists({xpath: "//*[@data-identifier='confirmation-dialog']"}, () => {}, () => {
