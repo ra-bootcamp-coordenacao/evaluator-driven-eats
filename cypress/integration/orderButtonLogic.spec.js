@@ -17,7 +17,10 @@ beforeEach(() => {
   cy.visit(Cypress.env('url'), {
     onBeforeLoad(win) {
       cy.stub(win, 'prompt').returns('p').as('prompt');
-      cy.stub(win, 'open').callsFake(url => win.location.href = url)
+      cy.stub(win, 'open').callsFake(url => {
+        setTimeout(() => win.location.href = url, 0);
+        return win;
+      });
     }
   });
 });
@@ -71,8 +74,6 @@ describe('Lógica: Habilitar botão de enviar pedido', () => {
   });
 
   it('Botão é habilitado ao selecionar os três', () => {
-    cy.removeUnwantedAttribute('a', 'target');
-
     cy.xpath("//*[@data-identifier='dishes']//*[@data-identifier='food-option']").eq(0).click();
     cy.xpath("//*[@data-identifier='drinks']//*[@data-identifier='food-option']").eq(0).click();
     cy.xpath("//*[@data-identifier='desserts']//*[@data-identifier='food-option']").eq(0).click();

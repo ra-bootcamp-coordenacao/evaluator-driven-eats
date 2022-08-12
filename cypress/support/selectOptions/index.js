@@ -58,19 +58,14 @@ function clickAndRetrieve({ ignoreOptionData = false } = {}) {
     });
 
     return cy.wait(0).then(function() {
-      console.log({
-        dishTitle: this.dishTitle,
-        drinkTitle: this.drinkTitle,
-        dessertTitle: this.dessertTitle,
-        totalPrice: this.totalPrice,
-      });
+      cy.removeUnwantedAttribute('a', 'target');
+
       return cy.wrap({
         dishTitle: this.dishTitle,
         drinkTitle: this.drinkTitle,
         dessertTitle: this.dessertTitle,
         totalPrice: this.totalPrice,
       });
-
     });
 }
 
