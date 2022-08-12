@@ -1,13 +1,16 @@
 function orderConfirm() {
   cy.window().then((win) => {
-    cy.stub(win, 'prompt').returns('p');
-    cy.stub(win, 'open').callsFake(url => win.location.href = url)
-    cy.getExistingElement([{text: 'fechar pedido'}, {text: 'fechar o pedido'}, {text: 'fazer pedido'}, {text: 'fazer o pedido'}, { text: 'confirme' }, { text: 'finalizar' }, { text: 'finalize'}]).click();
+    cy.stub(win, 'prompt').returns('test').as('prompt');
+    cy.stub(win, 'open').callsFake(url => {
+      setTimeout(() => win.location.href = url, 0);
+    });
+    cy.getExistingElement([{text: 'fechar pedido'}, {text: 'fechar o pedido'}, {text: 'fazer pedido'}, {text: 'fazer o pedido'}, { text: 'finalizar' }, { text: 'finalize'}]).click();
     cy.wait(0);
 
     cy.runIfElementExists(
       { xpath: "//*[@data-identifier='confirmation-dialog']" },
       () => {
+        cy.removeUnwantedAttribute('a', 'target');
         cy.getExistingElement([{text: 'tudo certo'}, {text: 'pode pedir'}]).click();
       }
     );

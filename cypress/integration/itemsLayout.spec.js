@@ -9,9 +9,7 @@ beforeEach(() => {
 
 describe('Layout: Itens e Botão habilitados', () => {
   it('Check e borda nos itens ao selecioná-los', () => {
-    cy.xpath(
-        "//*[@data-identifier='dishes']//*[@data-identifier='food-option']"
-      )
+    cy.xpath("//*[@data-identifier='dishes']//*[@data-identifier='food-option']")
       .first()
       .as('dish');
     cy.analyseElement('@dish').as('beforeColors');
@@ -31,19 +29,14 @@ describe('Layout: Itens e Botão habilitados', () => {
   });
 
   it('Mudança de texto e cor no botão flutuante', () => {
-    cy.getExistingElement([{text: '3 itens'}, {text: 'três itens'}, {text: 'tres itens'}]).as('button');
-    cy.get('@button').should('be.visible');
+    cy.getExistingElement([{text: '3 itens'}, {text: 'três itens'}, {text: 'tres itens'}]).as('button').should('be.visible');
     cy.analyseElement('@button').as('buttonBefore');
-    cy.shouldNotExistOrShouldNotBeVisible({
-      text: 'Fechar pedido'
-    });
+    cy.shouldNotExistOrShouldNotBeVisible({ text: 'Fechar pedido' });
 
     cy.selectOptions({ ignoreOptionData: true });
-    cy.shouldNotExistOrShouldNotBeVisible({
-      text: 'Selecione os 3 itens'
-    });
+    cy.shouldNotExistOrShouldNotBeVisible({ text: '3 itens' });
 
-    cy.getExistingElement([{text: 'fechar pedido'}, {text: 'fechar o pedido'}, {text: 'fazer pedido'}, {text: 'fazer o pedido'}]).as('button');
+    cy.getExistingElement([{text: 'fechar pedido'}, {text: 'fechar o pedido'}, {text: 'fazer pedido'}, {text: 'fazer o pedido'}, { text: 'finalizar' }, { text: 'finalize'}]).as('button');
     cy.get('@button').should('be.visible');
     cy.analyseElement('@button').as('buttonAfter');
     cy.wait(0).then(function () {

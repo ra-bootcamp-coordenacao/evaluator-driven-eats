@@ -18,12 +18,12 @@ beforeEach(() => {
 
 describe("Lógica: Formatação de mensagem conforme requisito", () => {
   it('Formatação de mensagem de acordo com o formato proposto', () => {
-    cy.removeUnwantedAttribute('a', 'target');
-
     cy.selectOptions().then((data) => {
       cy.orderConfirm().then(() => {
         cy.window().then((win) => {
-          expect(messageMatch(win.location.href, data, 'format')).to.equal(2);
+          cy.get('@prompt').then((prompt) => {
+            expect(messageMatch(win.location.href, data, true, prompt)).to.equal(2);
+          });
         });
       });
     });

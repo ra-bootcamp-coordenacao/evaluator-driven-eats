@@ -55,11 +55,11 @@ describe('Lógica: Habilitar botão de enviar pedido', () => {
     cy.getExistingElement([{text: '3 itens'}, {text: 'três itens'}, {text: 'tres itens'}]).should('be.visible');
     cy.xpath("//*[@data-identifier='desserts']//*[@data-identifier='food-option']").first().click();
     cy.shouldNotExistOrShouldNotBeVisible({ text: 'Selecione os 3 itens' });
-    cy.getExistingElement([{text: 'fechar pedido'}, {text: 'fechar o pedido'}, {text: 'fazer pedido'}, {text: 'fazer o pedido'}, { text: 'confirme' }, { text: 'finalizar' }, { text: 'finalize'}]).as('button');
+    cy.getExistingElement([{text: 'fechar pedido'}, {text: 'fechar o pedido'}, {text: 'fazer pedido'}, {text: 'fazer o pedido'}, { text: 'finalizar' }, { text: 'finalize'}]).as('button');
     cy.analyseElement('@button').as('buttonAfterThree');
 
     cy.wait(0).then(function () {
-      cy.getExistingElement([{text: 'fechar pedido'}, {text: 'fechar o pedido'}, {text: 'fazer pedido'}, {text: 'fazer o pedido'}, { text: 'confirme' }, { text: 'finalizar' }, { text: 'finalize'}]).should('be.visible');
+      cy.getExistingElement([{text: 'fechar pedido'}, {text: 'fechar o pedido'}, {text: 'fazer pedido'}, {text: 'fazer o pedido'}, { text: 'finalizar' }, { text: 'finalize'}]).should('be.visible');
       expect(findSimilarity(this.buttonBeforeAll.asHexMatrix.flat(), this.buttonAfterOne.asHexMatrix.flat())).to.equal(1);
 
       expect(findSimilarity(this.buttonAfterOne.asHexMatrix.flat(), this.buttonAfterTwo.asHexMatrix.flat())).to.equal(1);
@@ -76,7 +76,9 @@ describe('Lógica: Habilitar botão de enviar pedido', () => {
     cy.xpath("//*[@data-identifier='dishes']//*[@data-identifier='food-option']").eq(0).click();
     cy.xpath("//*[@data-identifier='drinks']//*[@data-identifier='food-option']").eq(0).click();
     cy.xpath("//*[@data-identifier='desserts']//*[@data-identifier='food-option']").eq(0).click();
-    cy.getExistingElement([{text: 'fechar pedido'}, {text: 'fechar o pedido'}, {text: 'fazer pedido'}, {text: 'fazer o pedido'}, { text: 'confirme' }, { text: 'finalizar' }, { text: 'finalize'}]).as('orderConfirmButton').should('be.visible');
+    cy.removeUnwantedAttribute('a', 'target');
+
+    cy.getExistingElement([{text: 'fechar pedido'}, {text: 'fechar o pedido'}, {text: 'fazer pedido'}, {text: 'fazer o pedido'}, { text: 'finalizar' }, { text: 'finalize'}]).as('orderConfirmButton').should('be.visible');
     cy.get('@orderConfirmButton').click();
 
     cy.runIfElementExists({xpath: "//*[@data-identifier='confirmation-dialog']"}, () => {}, () => {

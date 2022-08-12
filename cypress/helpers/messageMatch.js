@@ -1,6 +1,6 @@
 import { compareTwoStrings } from "string-similarity";
 
-export default function messageMatch(url, data, checkFormat) {
+export default function messageMatch(url, data, checkFormat, prompt) {
   let match = 0;
   const searchParams = new URLSearchParams(url.split("?")[1]);
   const text = searchParams.get("text");
@@ -13,7 +13,11 @@ export default function messageMatch(url, data, checkFormat) {
   let total = data.totalPrice.toFixed(2).replace('.', ',');
 
   if (!!checkFormat) {
-    const baseMessage = `olá,gostariadefazeropedidoprato${dish}bebida${drink}sobremesa${dessert}totalr$${total}`;
+    let baseMessage = `olá,gostariadefazeropedidoprato${dish}bebida${drink}sobremesa${dessert}totalr$${total}`;
+
+    if (prompt.callCount > 0) {
+      baseMessage = baseMessage + 'nometestendereçotest'
+    }
 
     decodedText = decodedText.replace(/\*/g, '');
     decodedText = decodedText.replace(/\:/g, '');
@@ -21,7 +25,6 @@ export default function messageMatch(url, data, checkFormat) {
     decodedText = decodedText.replace(/\_/g, '');
 
     const similarity = compareTwoStrings(baseMessage, decodedText);
-    console.log(similarity);
 
     if (similarity > 0.8) {
       match = 2;

@@ -33,6 +33,7 @@ function clickAndRetrieve({ ignoreOptionData = false } = {}) {
     .first()
     .click()
     .then(function (element) {
+      cy.removeUnwantedAttribute('a', 'target');
       if (!ignoreOptionData) {
         const elementHTML = element.get(0);
         this.dessertTitle = elementHTML.querySelector(
