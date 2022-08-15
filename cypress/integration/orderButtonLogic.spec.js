@@ -57,7 +57,7 @@ describe('Lógica: Habilitar botão de enviar pedido', () => {
 
     cy.getExistingElement([{text: '3 itens'}, {text: 'três itens'}, {text: 'tres itens'}]).should('be.visible');
     cy.xpath("//*[@data-identifier='desserts']//*[@data-identifier='food-option']").first().click();
-    cy.shouldNotExistOrShouldNotBeVisible({ text: 'Selecione os 3 itens' });
+    cy.shouldNotExistOrShouldNotBeVisible({ text: '3 itens' });
     cy.getExistingElement([{text: 'fechar pedido'}, {text: 'fechar o pedido'}, {text: 'fazer pedido'}, {text: 'fazer o pedido'}, { text: 'finalizar' }, { text: 'finalize'}]).as('button');
     cy.analyseElement('@button').as('buttonAfterThree');
 
