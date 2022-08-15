@@ -1,6 +1,6 @@
 function orderConfirm() {
   cy.window().then((win) => {
-    cy.stub(win, 'prompt').returns('p').as('prompt');
+    cy.stub(win, 'prompt').returns('test').as('prompt');
     cy.stub(win, 'open').callsFake(url => {
       setTimeout(() => win.location.href = url, 0);
       return win;

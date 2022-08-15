@@ -15,7 +15,7 @@ export default function messageMatch(url, data, checkFormat, prompt) {
   if (!!checkFormat) {
     let baseMessage = `olá,gostariadefazeropedidoprato${dish}bebida${drink}sobremesa${dessert}totalr$${total}`;
 
-    if (prompt.callCount > 0) {
+    if (!!prompt && prompt.callCount > 0) {
       baseMessage = baseMessage + 'nometestendereçotest'
     }
 
