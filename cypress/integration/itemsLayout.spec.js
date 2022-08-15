@@ -8,7 +8,7 @@ beforeEach(() => {
 });
 
 describe('Layout: Itens e Botão habilitados', () => {
-  it('Check e borda nos itens ao selecioná-los', () => {
+  it('Borda nos itens ao selecioná-los', () => {
     cy.xpath("//*[@data-identifier='dishes']//*[@data-identifier='food-option']")
       .first()
       .as('dish');
@@ -26,6 +26,12 @@ describe('Layout: Itens e Botão habilitados', () => {
 
       expect(findInMatrix(this.afterColors.asHexMatrix, '#32b72f')).to.be.true;
     });
+  });
+
+  it('Check nos itens ao selecioná-los', () => {
+    cy.xpath("//*[@data-identifier='dishes']//*[@data-identifier='food-option']").eq(0).as('dish').click();
+
+    cy.xpath("//*[@data-identifier='dishes']//ion-icon").eq(0).as('check').should('be.visible');
   });
 
   it('Mudança de texto e cor no botão flutuante', () => {
