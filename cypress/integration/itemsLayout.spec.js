@@ -28,12 +28,6 @@ describe('Layout: Itens e Botão habilitados', () => {
     });
   });
 
-  it('Check nos itens ao selecioná-los', () => {
-    cy.xpath("//*[@data-identifier='dishes']//*[@data-identifier='food-option']").eq(0).as('dish').click();
-
-    cy.xpath("//*[@data-identifier='dishes']//ion-icon").eq(0).as('check').should('be.visible');
-  });
-
   it('Mudança de texto e cor no botão flutuante', () => {
     cy.getExistingElement([{text: '3 itens'}, {text: 'três itens'}, {text: 'tres itens'}]).as('button').should('be.visible');
     cy.analyseElement('@button').as('buttonBefore');
